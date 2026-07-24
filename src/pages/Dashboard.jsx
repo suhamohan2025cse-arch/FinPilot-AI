@@ -7,6 +7,7 @@ import RecentTransactions from "../components/dashboard/RecentTransactions";
 import QuickActions from "../components/dashboard/QuickActions";
 import FeeRiskAnalysis from "../components/dashboard/FeeRiskAnalysis";
 import BudgetForecast from "../components/dashboard/BudgetForecast";
+import ExpenseAnalytics from "../components/dashboard/ExpenseAnalytics";
 
 import {
   IndianRupee,
@@ -33,23 +34,27 @@ export default function Dashboard() {
             </h1>
 
             <p className="mt-2 text-slate-400">
-              Welcome back 👋 Here's your school's AI-powered financial overview.
+              AI-powered school financial intelligence platform.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+
             <StatCard title="Total Fees Collected" value="₹1.28 Cr" growth="+12.5%" icon={IndianRupee}/>
             <StatCard title="Students" value="1,245" growth="+8%" icon={Users}/>
             <StatCard title="High Risk Students" value="47" growth="-15%" icon={TriangleAlert}/>
             <StatCard title="Collection Rate" value="91.4%" growth="+4%" icon={BarChart3}/>
+
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
             <div className="xl:col-span-2">
               <RevenueChart />
             </div>
 
             <AIInsights />
+
           </div>
 
           <RecentTransactions />
@@ -59,6 +64,8 @@ export default function Dashboard() {
           <FeeRiskAnalysis />
 
           <BudgetForecast />
+
+          <ExpenseAnalytics />
 
         </main>
 
