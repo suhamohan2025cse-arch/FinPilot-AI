@@ -1,4 +1,6 @@
+import { useState } from "react";
 import StudentRow from "./StudentRow";
+import StudentModal from "./StudentModal";
 
 const students = [
   {
@@ -41,48 +43,104 @@ const students = [
     pending: "₹0",
     risk: "Low",
   },
+  {
+    id: 5,
+    name: "Kavin Raj",
+    admission: "FP1005",
+    grade: "Grade 11-B",
+    attendance: "74%",
+    fee: "Pending",
+    pending: "₹21,000",
+    risk: "High",
+  },
 ];
 
 export default function StudentsTable() {
+  const [selectedStudent, setSelectedStudent] = useState(null);
+
   return (
-    <div className="rounded-3xl border border-slate-800 bg-[#0F172A] overflow-hidden shadow-xl">
+    <>
+      <div className="bg-[#0F172A] border border-slate-800 rounded-3xl shadow-xl overflow-hidden">
 
-      <div className="overflow-x-auto">
+        <div className="px-6 py-5 border-b border-slate-800">
 
-        <table className="w-full">
+          <h2 className="text-2xl font-bold text-white">
+            Students List
+          </h2>
 
-          <thead className="bg-[#111827]">
+          <p className="text-slate-400 mt-1">
+            AI Powered Student Monitoring
+          </p>
 
-            <tr className="text-slate-400 text-sm">
+        </div>
 
-              <th className="text-left px-6 py-4">Student</th>
-              <th className="text-left px-6 py-4">Admission ID</th>
-              <th className="text-left px-6 py-4">Grade</th>
-              <th className="text-left px-6 py-4">Attendance</th>
-              <th className="text-left px-6 py-4">Fee Status</th>
-              <th className="text-left px-6 py-4">Pending</th>
-              <th className="text-left px-6 py-4">AI Risk</th>
-              <th className="text-center px-6 py-4">Action</th>
+        <div className="overflow-x-auto">
 
-            </tr>
+          <table className="w-full">
 
-          </thead>
+            <thead className="bg-[#111827]">
 
-          <tbody>
+              <tr className="text-slate-400 text-sm">
 
-            {students.map((student) => (
-              <StudentRow
-                key={student.id}
-                student={student}
-              />
-            ))}
+                <th className="text-left px-6 py-4">
+                  Student
+                </th>
 
-          </tbody>
+                <th className="text-left px-6 py-4">
+                  Admission ID
+                </th>
 
-        </table>
+                <th className="text-left px-6 py-4">
+                  Grade
+                </th>
+
+                <th className="text-left px-6 py-4">
+                  Attendance
+                </th>
+
+                <th className="text-left px-6 py-4">
+                  Fee Status
+                </th>
+
+                <th className="text-left px-6 py-4">
+                  Pending
+                </th>
+
+                <th className="text-left px-6 py-4">
+                  AI Risk
+                </th>
+
+                <th className="text-center px-6 py-4">
+                  Action
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              {students.map((student) => (
+                <StudentRow
+                  key={student.id}
+                  student={student}
+                  onView={() => setSelectedStudent(student)}
+                />
+              ))}
+
+            </tbody>
+
+          </table>
+
+        </div>
 
       </div>
 
-    </div>
+      <StudentModal
+        student={selectedStudent}
+        onClose={() => setSelectedStudent(null)}
+      />
+
+    </>
   );
 }
